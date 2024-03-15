@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req:NextRequest , res: NextApiResponse) {
   try {
     const response = await fetch('https://biggamesapi.io/api/rap');
     if (!response.ok) {
