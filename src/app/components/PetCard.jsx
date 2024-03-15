@@ -36,7 +36,7 @@ const PetCard = ({ pet }) => {
       <div className="relative">
         <img src={pictureUrl} alt={ids} style={{ maxHeight: '100px', width: '100%', objectFit: 'cover', borderRadius: '8px' }}/>
       </div>
-      <div className="w-full text-center mt-4">
+      <div className="w-full text-center mt-4 text-gray-600">
         <h3 className="text-xl font-semibold mb-2" style={{ fontSize: dynamicFontSize }}>{ids}</h3>
         <p className="text-lg font-bold mt-2">Value: {formatValue(value)}</p>
         <p className="text-gray-600">Category: {category}</p>

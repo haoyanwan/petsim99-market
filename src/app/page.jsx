@@ -1,9 +1,9 @@
 "use client";
 // App.jsx
 import React from "react";
-import PetPanel from "../components/PetPanel";
-import SearchBar from "../components/SearchBar";
-import {formatName} from "../utils/petNames";
+import PetPanel from "./components/PetPanel";
+import SearchBar from "./components/SearchBar";
+import {formatName} from "./utils/petNames";
 
 import { useEffect, useState } from "react";
 
