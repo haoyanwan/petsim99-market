@@ -15,11 +15,11 @@ const App = () => {
     const fetchPrices = async () => {
       try {
         // get the body of the response
-        const response = await fetch("/api/prices", { method: "GET" });
+        const price_response = await fetch("/api/prices", { method: "GET" });
         // parse the body of the response as JSON
-        const data = await response.json();
-        console.log("data", data);
+        const data = await price_response.json();
         setPrices(data.data);
+        
       } catch (error) {
         console.error("Error fetching prices:", error);
       }

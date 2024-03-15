@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import PetCard from './PetCard';
 
-const PetPanel = ({ pets }) => {
+const PetPanel = ({ pets, names}) => {
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const PetPanel = ({ pets }) => {
     <List
       height={height}
       itemCount={Math.ceil(pets.length / 4)}
-      itemSize={200}
+      itemSize={250}
       width="100%"
     >
       {renderRow}
