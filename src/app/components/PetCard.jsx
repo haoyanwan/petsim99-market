@@ -3,6 +3,7 @@ import { formatValue } from '../utils/shortenValues';
 import { formatName } from '../utils/petNames';
 import { getPicture } from '../utils/petPicture'; // Adjust based on your implementation
 import { useEffect, useState } from 'react';
+import Link from 'next/link'; // Assuming you're using Next.js for navigation
 
 // Custom hook to calculate font size
 function useDynamicFontSize(text) {
@@ -25,13 +26,27 @@ function useDynamicFontSize(text) {
 
 const PetCard = ({ pet }) => {
   const { category, configData, value } = pet;
-  const { id, pt, sh } = configData;
+  var { id, pt, sh } = configData;
   const ids = formatName(id, pt, sh);
 
   const pictureUrl = getPicture(id);
   const dynamicFontSize = useDynamicFontSize(ids);
 
+  //if there is no sh set sh to false
+  if (sh === undefined) {
+    sh = false;
+  }
+
+  //if there is no pt set pt to 0
+  if (pt === undefined) {
+    pt = null;
+  }
+
   return (
+    <Link href={{
+      pathname: '/price-history',
+      query: { id, pt, sh },
+    }} passHref>
     <div className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center" style={{ maxWidth: '300px' }}>
       <div className="relative">
         <img src={pictureUrl} alt={ids} style={{ maxHeight: '100px', width: '100%', objectFit: 'cover', borderRadius: '8px' }}/>
@@ -42,6 +57,7 @@ const PetCard = ({ pet }) => {
         <p className="text-gray-600">Category: {category}</p>
       </div>
     </div>
+    </Link>
   );
 };
 

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import PetCard from './PetCard';
 
-const PetPanel = ({ pets, names}) => {
+const PetPanel = ({ pets, names }) => {
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
@@ -42,6 +42,13 @@ const PetPanel = ({ pets, names}) => {
       itemCount={Math.ceil(pets.length / 4)}
       itemSize={250}
       width="100%"
+      style={{
+        overflowX: 'hidden',
+        overflowY: 'auto',
+        scrollbarWidth: 'none', // For Firefox
+        msOverflowStyle: 'none', // For Internet Explorer and Edge
+      }}
+      className="hide-scrollbar" // Custom class for WebKit browsers
     >
       {renderRow}
     </List>
