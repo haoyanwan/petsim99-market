@@ -16,8 +16,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // add default font and color to the body
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} font-sans text-gray-800`}>
         {children}
         <Analytics />
       </body>
