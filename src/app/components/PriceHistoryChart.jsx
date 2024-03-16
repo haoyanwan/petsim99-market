@@ -42,7 +42,6 @@ const PriceHistoryChart = ({ priceHistory }) => {
     },
     scales: {
       y: {
-        min: Math.min(...priceHistory.map((entry) => entry.price)) / 1.1, // Set the minimum value to half the minimum price
         ticks: {
           callback: (value) => formatValue(value),
         },
