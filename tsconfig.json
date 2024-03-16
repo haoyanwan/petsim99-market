@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/api/route.ts", "src/app/api/route.ts", "src/app/components/PetCard.jsx", "src/app/panel/page.jsx", "src/app/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/api/route.ts", "src/app/api/route.ts", "src/app/components/PetCard.jsx", "src/app/panel/page.jsx", "src/app/page.jsx", "src/app/api/prices/route.js"],
   "exclude": ["node_modules"]
 }

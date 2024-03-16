@@ -28,7 +28,7 @@ const PetCard = ({ pet }) => {
   const { category, configData, value } = pet;
   var { id, pt, sh } = configData;
   const ids = formatName(id, pt, sh);
-
+  
   const pictureUrl = getPicture(id);
   const dynamicFontSize = useDynamicFontSize(ids);
 
