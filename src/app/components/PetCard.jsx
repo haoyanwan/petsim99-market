@@ -39,7 +39,7 @@ const PetCard = ({ pet }) => {
 
   //if there is no pt set pt to 0
   if (pt === undefined) {
-    pt = null;
+    pt = 0;
   }
 
   return (

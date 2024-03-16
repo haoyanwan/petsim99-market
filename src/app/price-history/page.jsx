@@ -52,10 +52,9 @@ const PriceHistoryContent = ({
     const id = searchParams.get('id');
     const sh = searchParams.get('sh');
     const pt = searchParams.get('pt');
-    console.log(id, pt, sh);
     setId(id);
-    setSh(sh);
-    setPt(pt);
+    setSh(sh === 'true' ? 'true' : 'false');
+    setPt(pt !== null ? parseInt(pt, 10) : 0);
   }, [searchParams, setId, setSh, setPt]);
 
   useEffect(() => {
@@ -75,25 +74,11 @@ const PriceHistoryContent = ({
     }
   }, [ids, shs, pts, setPriceHistory]);
 
-  // set sh to "false" if it is null
-  useEffect(() => {
-    if (shs === null) {
-      setSh(false);
-    }
-  }, [shs, setSh]);
-
-  // set pt to 0 if it is null
-  useEffect(() => {
-    if (pts === null) {
-      setPt(0);
-    }
-  }, [pts, setPt]);
-
   return (
     <>
       <div className="bg-white rounded-lg shadow-md p-6 mb-8">
         <p className="text-lg font-bold mb-2">Pet ID: {ids}</p>
-        <p className="text-lg mb-2">SH: {shs ? 'True' : 'False'}</p>
+        <p className="text-lg mb-2">SH: {shs}</p>
         <p className="text-lg mb-2">PT: {pts}</p>
       </div>
       <PriceHistoryChart priceHistory={priceHistory} />
