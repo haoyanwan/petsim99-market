@@ -13,9 +13,9 @@ const PriceHistoryPage = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-bold">Price History</h1>
+        <h1 className="text-4xl font-bold text-gray-200">Price History</h1>
         <Link href="/">
-          <button className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+          <button className="px-4 py-2 bg-bright text-gray-300 rounded-lg shadow-md hover:bg-dk focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
             Back to Search
           </button>
         </Link>
@@ -76,12 +76,12 @@ const PriceHistoryContent = ({
 
   return (
     <>
-      <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+      <div className="bg-bright rounded-lg shadow-md p-6 mb-8 text-gray-200">
         <p className="text-lg font-bold mb-2">Pet ID: {ids}</p>
         <p className="text-lg mb-2">SH: {shs}</p>
         <p className="text-lg mb-2">PT: {pts}</p>
       </div>
-      <PriceHistoryChart priceHistory={priceHistory} />
+      <PriceHistoryChart priceHistory={priceHistory} className="bg-bright"/>
     </>
   );
 };
