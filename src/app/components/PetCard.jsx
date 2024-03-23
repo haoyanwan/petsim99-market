@@ -42,11 +42,11 @@ const PetCard = ({ pet }) => {
           <img src={pictureUrl} alt={ids} className="w-full h-full pt-5 object-cover rounded-t-lg" />
         </div>
         <div className="flex-grow p-4 text-center">
-          <h3 className="text-xl font-semibold mb-2 overflow-hidden overflow-ellipsis whitespace-nowrap" style={{ fontSize: dynamicFontSize }}>
+          <h3 className="text-xl text-gray-300 font-semibold mb-2 overflow-hidden overflow-ellipsis whitespace-nowrap" style={{ fontSize: dynamicFontSize }}>
             {ids}
           </h3>
-          <p className="text-lg font-bold mt-2">Value: {formatValue(value)}</p>
-          <p className="text-gray-800">Category: {category}</p>
+          <p className="text-lg text-gray-300 font-bold mt-2">Value: {formatValue(value)}</p>
+          <p className="text-gray-300">Category: {category}</p>
         </div>
       </div>
     </Link>
