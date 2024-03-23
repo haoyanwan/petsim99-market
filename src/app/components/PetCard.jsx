@@ -44,10 +44,10 @@ const PetCard = ({ pet }) => {
 
   return (
     <Link href={{
-      pathname: '/price-history',
+      pathname: '/price-terminal',
       query: { id, pt, sh },
     }} passHref>
-    <div className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center" style={{ maxWidth: '300px' }}>
+    <div className="bg-white rounded-lg p-4 m-4 flex flex-col items-center hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 cursor-pointer" style={{ maxWidth: '300px' }}>
       <div className="relative">
         <img src={pictureUrl} alt={ids} style={{ maxHeight: '100px', width: '100%', objectFit: 'cover', borderRadius: '8px' }}/>
       </div>

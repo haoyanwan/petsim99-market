@@ -27,7 +27,7 @@ const PetPanel = ({ pets, names }) => {
 
     return (
       <div style={style}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pd-4">
           {rowPets.map((pet, i) => (
             <PetCard key={startIndex + i} pet={pet} />
           ))}

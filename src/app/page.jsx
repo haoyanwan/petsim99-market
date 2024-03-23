@@ -4,7 +4,6 @@ import React from "react";
 import PetPanel from "./components/PetPanel";
 import SearchBar from "./components/SearchBar";
 import {formatName} from "./utils/petNames";
-
 import { useEffect, useState } from "react";
 
 const App = () => {
@@ -51,13 +50,13 @@ const App = () => {
   return (
     
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-4">Pet List</h1>
-      <div className="mb-4">
-        <SearchBar
-          searchTerm={searchTerm}
+      <div className="Top p-4 bg-white flex items-center rounded-lg justify-between">
+        <div className="Right flex items-center gap-10">
+          
+        <SearchBar searchTerm={searchTerm}
           onSearch={handleSearch}
-          onFilterChange={handleFilterChange}
-        />
+          onFilterChange={handleFilterChange}/>
+        </div>
       </div>
       <PetPanel pets={filteredPets} />
     </div>
