@@ -1,8 +1,12 @@
 // SearchBar.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const SearchBar = ({ searchTerm, onSearch, onFilterChange }) => {
-  const [activeFilters, setActiveFilters] = useState([]);
+  const [activeFilters, setActiveFilters] = useState(['Huge']);
+
+  useEffect(() => {
+    onFilterChange('Huge', true);
+  }, []);
 
   const handleFilterChange = (value) => {
     const isActive = activeFilters.includes(value);
@@ -16,6 +20,7 @@ const SearchBar = ({ searchTerm, onSearch, onFilterChange }) => {
   };
 
   return (
+    
     <div>
       <div className="SearchBar w-96 px-3.5 py-3 bg-gray-900 rounded-lg flex items-center gap-4">
         <div className="Search justify-start items-center gap-1 flex">

@@ -8,6 +8,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      animation: {
+        shiny: 'shiny 3s ease-in-out infinite',
+      },
+      keyframes: {
+        shiny: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+      },
+      
       colors: {
         "dk": "#35374B",
         "dk-light": "#344955",

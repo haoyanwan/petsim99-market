@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 import { formatValue } from '../utils/shortenValues';
 
 const FrequencySelector = ({ onFrequencyChange }) => {
-  const [selectedFrequency, setSelectedFrequency] = useState(1);
+  const [selectedFrequency, setSelectedFrequency] = useState(4);
+
+  useEffect(() => {
+    handleFrequencyChange(selectedFrequency);
+  }, []);
 
   const handleFrequencyChange = (frequency) => {
     setSelectedFrequency(frequency);
@@ -13,15 +17,7 @@ const FrequencySelector = ({ onFrequencyChange }) => {
 
   return (
     <div className="mb-4">
-      <label className="mr-2">
-        <input
-          type="radio"
-          value={1}
-          checked={selectedFrequency === 1}
-          onChange={() => handleFrequencyChange(1)}
-        />
-        1 hour
-      </label>
+      
       <label className="mr-2">
         <input
           type="radio"
