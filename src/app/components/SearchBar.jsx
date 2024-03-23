@@ -34,7 +34,7 @@ const SearchBar = ({ searchTerm, onSearch, onFilterChange }) => {
           className={`ml-2 text-gray-400 font-bold rounded-full py-1 px-3 cursor-pointer ${
             activeFilters.includes('Huge')
               ? 'bg-gray-800 text-white'
-              : 'bg-dk-light text-gray-700 hover:bg-gray-800 hover:text-white'
+              : 'bg-dk-light text-gray-500 hover:bg-gray-800 hover:text-white'
           }`}
           onClick={() => handleFilterChange('Huge')}
         >
@@ -44,7 +44,7 @@ const SearchBar = ({ searchTerm, onSearch, onFilterChange }) => {
           className={`ml-2 text-gray-400 font-bold rounded-full py-1 px-3 cursor-pointer ${
             activeFilters.includes('Golden')
               ? 'bg-gray-800 text-white'
-              : 'bg-dk-light text-gray-700 hover:bg-gray-800 hover:text-white'
+              : 'bg-dk-light text-gray-500 hover:bg-gray-800 hover:text-white'
           }`}
           onClick={() => handleFilterChange('Golden')}
         >
@@ -54,7 +54,7 @@ const SearchBar = ({ searchTerm, onSearch, onFilterChange }) => {
           className={`ml-2 text-gray-400 font-bold rounded-full py-1 px-3 cursor-pointer ${
             activeFilters.includes('Rainbow')
               ? 'bg-gray-800 text-white'
-              : 'bg-dk-light text-gray-700 hover:bg-gray-800 hover:text-white'
+              : 'bg-dk-light text-gray-500 hover:bg-gray-800 hover:text-white'
           }`}
           onClick={() => handleFilterChange('Rainbow')}
         >
@@ -64,7 +64,7 @@ const SearchBar = ({ searchTerm, onSearch, onFilterChange }) => {
           className={`ml-2 text-gray-400 font-bold rounded-full py-1 px-3 cursor-pointer ${
             activeFilters.includes('Shiny')
               ? 'bg-gray-800 text-white'
-              : 'bg-dk-light text-gray-700 hover:bg-gray-800 hover:text-white'
+              : 'bg-dk-light text-gray-500 hover:bg-gray-800 hover:text-white'
           }`}
           onClick={() => handleFilterChange('Shiny')}
         >
