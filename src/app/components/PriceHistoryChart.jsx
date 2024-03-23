@@ -107,7 +107,7 @@ const PriceHistoryChart = ({ priceHistory }) => {
 
   return (
     <div className="w-full max-w-4xl mx-auto">
-      <div className="bg-white rounded-lg shadow-md p-6">
+      <div className="bg-white text-black rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-bold mb-4">Price History Chart</h2>
         <FrequencySelector onFrequencyChange={handleFrequencyChange} />
         <div className="w-full h-96">
