@@ -5,6 +5,14 @@ import Link from 'next/link';
 import PriceHistoryChart from '../components/PriceHistoryChart';
 
 const PriceHistoryPage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PriceHistoryContent />
+    </Suspense>
+  );
+};
+
+const PriceHistoryContent = () => {
   const [ids, setId] = useState(null);
   const [shs, setSh] = useState(null);
   const [pts, setPt] = useState(null);
@@ -84,14 +92,12 @@ const PriceHistoryPage = () => {
           </button>
         </Link>
       </div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <div className="bg-bright rounded-lg shadow-md p-6 mb-8 text-gray-200">
-          <p className="text-lg font-bold mb-2">Pet ID: {ids}</p>
-          <p className="text-lg mb-2">{getGoldenRainbowText()}</p>
-          <p className="text-lg mb-2">{getShinyText()}</p>
-        </div>
-        <PriceHistoryChart priceHistory={priceHistory} className="bg-bright" />
-      </Suspense>
+      <div className="bg-bright rounded-lg shadow-md p-6 mb-8 text-gray-200">
+        <p className="text-lg font-bold mb-2">Pet ID: {ids}</p>
+        <p className="text-lg mb-2">{getGoldenRainbowText()}</p>
+        <p className="text-lg mb-2">{getShinyText()}</p>
+      </div>
+      <PriceHistoryChart priceHistory={priceHistory} className="bg-bright" />
     </div>
   );
 };
