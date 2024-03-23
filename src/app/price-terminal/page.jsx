@@ -10,55 +10,25 @@ const PriceHistoryPage = () => {
   const [pts, setPt] = useState(null);
   const [priceHistory, setPriceHistory] = useState([]);
 
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-bold text-gray-200">Price History</h1>
-        <Link href="/">
-          <button className="px-4 py-2 bg-bright text-gray-300 rounded-lg shadow-md hover:bg-dk focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-            Back to Search
-          </button>
-        </Link>
-      </div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <PriceHistoryContent
-          ids={ids}
-          setId={setId}
-          shs={shs}
-          setSh={setSh}
-          pts={pts}
-          setPt={setPt}
-          priceHistory={priceHistory}
-          setPriceHistory={setPriceHistory}
-        />
-      </Suspense>
-    </div>
-  );
-};
-
-const PriceHistoryContent = ({
-  ids,
-  setId,
-  shs,
-  setSh,
-  pts,
-  setPt,
-  priceHistory,
-  setPriceHistory,
-}) => {
   const searchParams = useSearchParams();
 
   useEffect(() => {
     const id = searchParams.get('id');
     const sh = searchParams.get('sh');
     const pt = searchParams.get('pt');
-    setId(id);
-    setSh(sh === 'true' ? 'true' : 'false');
-    setPt(pt !== null ? parseInt(pt, 10) : 0);
-  }, [searchParams, setId, setSh, setPt]);
+
+    if (!id) {
+      setId(null);
+      setSh(null);
+      setPt(null);
+    } else {
+      setId(id);
+      setSh(sh === 'true' ? 'true' : 'false');
+      setPt(pt !== null ? parseInt(pt, 10) : 0);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
-    // Fetch the price history data based on the pet ID, sh, and pt
     const fetchPriceHistory = async () => {
       try {
         const response = await fetch(`/api/price-history?id=${ids}&sh=${shs}&pt=${pts}`);
@@ -74,15 +44,55 @@ const PriceHistoryContent = ({
     }
   }, [ids, shs, pts, setPriceHistory]);
 
-  return (
-    <>
-      <div className="bg-bright rounded-lg shadow-md p-6 mb-8 text-gray-200">
-        <p className="text-lg font-bold mb-2">Pet ID: {ids}</p>
-        <p className="text-lg mb-2">SH: {shs}</p>
-        <p className="text-lg mb-2">PT: {pts}</p>
+  const getGoldenRainbowText = () => {
+    if (pts === 1) {
+      return 'Golden';
+    } else if (pts === 2) {
+      return 'Rainbow';
+    } else {
+      return 'Normal';
+    }
+  };
+
+  const getShinyText = () => {
+    return shs === 'true' ? 'Shiny' : 'Not Shiny';
+  };
+
+  if (!ids) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-4xl font-bold text-gray-200 mb-8">Price History</h1>
+        <p className="text-lg text-gray-200 mb-4">
+          No pet selected. Please go to the dashboard and click on a pet to see its historical price.
+        </p>
+        <Link href="/">
+          <button className="px-4 py-2 bg-bright text-gray-300 rounded-lg shadow-md hover:bg-dk focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+            Go to Dashboard
+          </button>
+        </Link>
       </div>
-      <PriceHistoryChart priceHistory={priceHistory} className="bg-bright"/>
-    </>
+    );
+  }
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-4xl font-bold text-gray-200">Price History</h1>
+        <Link href="/">
+          <button className="px-4 py-2 bg-bright text-gray-300 rounded-lg shadow-md hover:bg-dk focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+            Back to Search
+          </button>
+        </Link>
+      </div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <div className="bg-bright rounded-lg shadow-md p-6 mb-8 text-gray-200">
+          <p className="text-lg font-bold mb-2">Pet ID: {ids}</p>
+          <p className="text-lg mb-2">{getGoldenRainbowText()}</p>
+          <p className="text-lg mb-2">{getShinyText()}</p>
+        </div>
+        <PriceHistoryChart priceHistory={priceHistory} className="bg-bright" />
+      </Suspense>
+    </div>
   );
 };
 
