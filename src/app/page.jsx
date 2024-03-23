@@ -3,7 +3,7 @@
 import React from "react";
 import PetPanel from "./components/PetPanel";
 import SearchBar from "./components/SearchBar";
-import {formatName} from "./utils/petNames";
+import { formatName } from "./utils/petNames";
 import { useEffect, useState } from "react";
 
 const App = () => {
@@ -21,7 +21,6 @@ const App = () => {
         console.error("Error fetching prices:", error);
       }
     };
-
     fetchPrices();
   }, []);
 
@@ -48,14 +47,16 @@ const App = () => {
   });
 
   return (
-    
     <div className="container mx-auto px-4 py-8">
-      <div className="Top p-4 bg-white flex items-center rounded-lg justify-between">
-        <div className="Right flex items-center gap-10">
-          
-        <SearchBar searchTerm={searchTerm}
-          onSearch={handleSearch}
-          onFilterChange={handleFilterChange}/>
+      <div className="sticky top-0 z-10 bg-white p-4 rounded-lg shadow-md">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-10">
+            <SearchBar
+              searchTerm={searchTerm}
+              onSearch={handleSearch}
+              onFilterChange={handleFilterChange}
+            />
+          </div>
         </div>
       </div>
       <PetPanel pets={filteredPets} />

@@ -1,58 +1,23 @@
 // PetPanel.jsx
-import React, { useEffect, useState } from 'react';
-import { FixedSizeList as List } from 'react-window';
+import React from 'react';
 import PetCard from './PetCard';
 
-const PetPanel = ({ pets, names }) => {
-  const [height, setHeight] = useState(0);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setHeight(window.innerHeight - 100);
-    };
-
-    handleResize(); // Set initial height
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  const renderRow = ({ index, style }) => {
-    const startIndex = index * 4;
-    const endIndex = startIndex + 4;
-    const rowPets = pets.slice(startIndex, endIndex);
-
-    return (
-      <div style={style}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pd-4">
-          {rowPets.map((pet, i) => (
-            <PetCard key={startIndex + i} pet={pet} />
-          ))}
-        </div>
-      </div>
-    );
-  };
+const PetPanel = ({ pets, limit }) => {
+  const limitedPets = pets.slice(0, limit);
 
   return (
-    <List
-      height={height}
-      itemCount={Math.ceil(pets.length / 4)}
-      itemSize={250}
-      width="100%"
-      style={{
-        overflowX: 'hidden',
-        overflowY: 'auto',
-        scrollbarWidth: 'none', // For Firefox
-        msOverflowStyle: 'none', // For Internet Explorer and Edge
-      }}
-      className="hide-scrollbar" // Custom class for WebKit browsers
-    >
-      {renderRow}
-    </List>
+    <div className="flex flex-wrap justify-center gap-6 pt-4 ">
+      {limitedPets.map((pet, index) => (
+        <div key={index} className="w-64">
+          <PetCard pet={pet} />
+        </div>
+      ))}
+    </div>
   );
+};
+
+PetPanel.defaultProps = {
+  limit: 36, // Default limit if not provided
 };
 
 export default PetPanel;
