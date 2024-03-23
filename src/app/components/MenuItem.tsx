@@ -19,11 +19,11 @@ const MenuItem: React.FC<MenuItemProps> = ({ text, icon, href }) => {
     <Link href={href}>
       <div
         className={`flex items-center gap-2 px-2 py-3 rounded-md cursor-pointer w-full transition duration-200 ease-in-out my-2 ${
-          isActive ? "bg-blue-300" : "hover:bg-slate-100"
+          isActive ? "bg-blue-300" : "hover:bg-dk-light"
         }`}
       >
         {icon && <div className="w-5 h-5">{icon}</div>}
-        <div className="text-zinc-600 text-base font-medium font-['DM Sans']">
+        <div className="text-white text-base font-medium font-['DM Sans']">
           {text}
         </div>
       </div>

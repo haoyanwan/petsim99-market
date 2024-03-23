@@ -27,14 +27,14 @@ export default function RootLayout({
       </head>
 
       <body className="h-full">
-        <div className="Dashboard flex h-full bg-neutral-100">
-          <div className="SideBar w-60 p-6 bg-white flex flex-col justify-between">
+        <div className="Dashboard flex h-full bg-dk-light ">
+          <div className="SideBar w-60 p-6 bg-dk flex flex-col justify-between">
             <div className="Top flex-col justify-start items-start gap-9 flex">
               <div className="Logo justify-start items-center gap-3 inline-flex">
                 <div className="Logo px-1.5 py-1.5 shadow-lg bg-purple-300 rounded-md flex-col justify-start items-start gap-2.5 inline-flex">
                   <Image src={logoIcon} alt="Logo" width={34} height={34} />
                 </div>
-                <div className="Motiv text-neutral-800 text-2xl font-bold font-['DM Sans']">
+                <div className="Motiv text-white text-2xl font-bold font-['DM Sans']">
                   PS99
                 </div>
               </div>
@@ -89,7 +89,7 @@ export default function RootLayout({
           </div>
 
           <div className="MainContent flex-1 flex flex-col">
-            <div className="Top p-4 bg-white flex items-center justify-between">
+            <div className="Top p-4 bg-dk flex items-center justify-between">
               <div className="Right flex items-center gap-10"></div>
             </div>
             <div className="Main flex-1 px-0 py-0 overflow-auto">

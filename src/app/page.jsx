@@ -47,9 +47,9 @@ const App = () => {
   });
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="sticky top-0 z-10 bg-white p-4 rounded-lg shadow-md">
-        <div className="flex items-center justify-between">
+    <div className="container mx-auto px-4 py-8 ">
+      <div className="sticky top-0 z-10 ">
+        <div className="flex items-center justify-between bg-bright p-4 rounded-lg shadow-md">
           <div className="flex items-center gap-10">
             <SearchBar
               searchTerm={searchTerm}

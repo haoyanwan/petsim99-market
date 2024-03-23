@@ -37,16 +37,16 @@ const PetCard = ({ pet }) => {
   const dynamicFontSize = useDynamicFontSize(ids);
   return (
     <Link href={{ pathname: '/price-terminal', query: { id, pt, sh } }} passHref>
-      <div className="bg-white rounded-lg shadow-md flex flex-col items-center h-full">
+      <div className="bg-bright rounded-lg shadow-md flex flex-col items-center h-full">
         <div className="relative w-50 h-40">
-          <img src={pictureUrl} alt={ids} className="w-full h-full object-cover rounded-t-lg" />
+          <img src={pictureUrl} alt={ids} className="w-full h-full pt-5 object-cover rounded-t-lg" />
         </div>
         <div className="flex-grow p-4 text-center">
           <h3 className="text-xl font-semibold mb-2 overflow-hidden overflow-ellipsis whitespace-nowrap" style={{ fontSize: dynamicFontSize }}>
             {ids}
           </h3>
           <p className="text-lg font-bold mt-2">Value: {formatValue(value)}</p>
-          <p className="text-gray-600">Category: {category}</p>
+          <p className="text-gray-800">Category: {category}</p>
         </div>
       </div>
     </Link>

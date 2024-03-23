@@ -9,10 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "light-pink": "#FFE6E6",
-        "pink": "#E1AFD1",
-        "purple": "#AD88C6",
-        "dark-purple": "#7469B6",
+        "dk": "#35374B",
+        "dk-light": "#344955",
+        "light": "#50727B",
+        "bright": "#50727B",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

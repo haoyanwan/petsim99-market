@@ -6,7 +6,6 @@ const SearchBar = ({ searchTerm, onSearch, onFilterChange }) => {
 
   const handleFilterChange = (value) => {
     const isActive = activeFilters.includes(value);
-
     if (isActive) {
       setActiveFilters(activeFilters.filter((filter) => filter !== value));
       onFilterChange(value, false);
@@ -18,7 +17,7 @@ const SearchBar = ({ searchTerm, onSearch, onFilterChange }) => {
 
   return (
     <div>
-      <div className="SearchBar w-96 px-3.5 py-3 bg-neutral-100 rounded-lg flex items-center gap-4">
+      <div className="SearchBar w-96 px-3.5 py-3 bg-gray-900 rounded-lg flex items-center gap-4">
         <div className="Search justify-start items-center gap-1 flex">
           <div className="Rectangle2 w-0.5 h-5 bg-amber-500 rounded" />
           <input
@@ -32,32 +31,40 @@ const SearchBar = ({ searchTerm, onSearch, onFilterChange }) => {
       </div>
       <div className="mt-4 flex space-x-4">
         <button
-          className={`ml-2 text-gray-500 font-bold rounded-full py-1 px-3 cursor-pointer ${
-            activeFilters.includes('Huge') ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'
+          className={`ml-2 text-gray-400 font-bold rounded-full py-1 px-3 cursor-pointer ${
+            activeFilters.includes('Huge')
+              ? 'bg-gray-800 text-white'
+              : 'bg-dk-light text-gray-700 hover:bg-gray-800 hover:text-white'
           }`}
           onClick={() => handleFilterChange('Huge')}
         >
           Huge
         </button>
         <button
-          className={`ml-2 text-gray-500 font-bold rounded-full py-1 px-3 cursor-pointer ${
-            activeFilters.includes('Golden') ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'
+          className={`ml-2 text-gray-400 font-bold rounded-full py-1 px-3 cursor-pointer ${
+            activeFilters.includes('Golden')
+              ? 'bg-gray-800 text-white'
+              : 'bg-dk-light text-gray-700 hover:bg-gray-800 hover:text-white'
           }`}
           onClick={() => handleFilterChange('Golden')}
         >
           Golden
         </button>
         <button
-          className={`ml-2 text-gray-500 font-bold rounded-full py-1 px-3 cursor-pointer ${
-            activeFilters.includes('Rainbow') ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'
+          className={`ml-2 text-gray-400 font-bold rounded-full py-1 px-3 cursor-pointer ${
+            activeFilters.includes('Rainbow')
+              ? 'bg-gray-800 text-white'
+              : 'bg-dk-light text-gray-700 hover:bg-gray-800 hover:text-white'
           }`}
           onClick={() => handleFilterChange('Rainbow')}
         >
           Rainbow
         </button>
         <button
-          className={`ml-2 text-gray-500 font-bold rounded-full py-1 px-3 cursor-pointer ${
-            activeFilters.includes('Shiny') ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'
+          className={`ml-2 text-gray-400 font-bold rounded-full py-1 px-3 cursor-pointer ${
+            activeFilters.includes('Shiny')
+              ? 'bg-gray-800 text-white'
+              : 'bg-dk-light text-gray-700 hover:bg-gray-800 hover:text-white'
           }`}
           onClick={() => handleFilterChange('Shiny')}
         >
