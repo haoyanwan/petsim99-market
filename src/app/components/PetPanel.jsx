@@ -8,7 +8,7 @@ const PetPanel = ({ pets, limit }) => {
   return (
     <div className="flex flex-wrap justify-center gap-6 pt-4 ">
       {limitedPets.map((pet, index) => (
-        <div key={index} className="w-64">
+        <div className="w-64">
           <PetCard pet={pet} />
         </div>
       ))}

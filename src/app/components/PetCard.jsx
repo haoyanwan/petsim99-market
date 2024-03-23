@@ -22,11 +22,19 @@ function useDynamicFontSize(text) {
 
 const PetCard = ({ pet }) => {
   const { category, configData, value } = pet;
-  const { id, pt, sh } = configData;
+  var { id, pt, sh } = configData;
+    //if there is no sh set sh to false
+    if (sh === undefined) {
+      sh = false;
+    }
+  
+    //if there is no pt set pt to 0
+    if (pt === undefined) {
+      pt = 0;
+    }
   const ids = formatName(id, pt, sh);
   const pictureUrl = getPicture(id);
   const dynamicFontSize = useDynamicFontSize(ids);
-
   return (
     <Link href={{ pathname: '/price-terminal', query: { id, pt, sh } }} passHref>
       <div className="bg-white rounded-lg shadow-md flex flex-col items-center h-full">
