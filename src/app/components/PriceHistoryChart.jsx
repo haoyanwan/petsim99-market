@@ -96,11 +96,11 @@ const currentPrice = priceHistory[priceHistory.length - 1]?.price;
             <AreaChart data={data}>
               <defs>
                 <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#344955" stopOpacity={0.4} />
-                  <stop offset="75%" stopColor="#344955" stopOpacity={0.05} />
+                  <stop offset="0%" stopColor="#5D3FD3" stopOpacity={0.8} />
+                  <stop offset="75%" stopColor="#5D3FD3" stopOpacity={0.3} />
                 </linearGradient>
               </defs>
-              <Area dataKey="price" stroke="#ffffff" fill="url(#color)" />
+              <Area dataKey="price" stroke="#ffffff" strokeWidth={4} fill="url(#color)" />
               <XAxis
                 dataKey="date"
                 axisLine={false}

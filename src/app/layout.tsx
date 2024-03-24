@@ -17,18 +17,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="h-full">
       <head>
         <link rel="shortcut icon" href="/favicon.ico" sizes="any" />
       </head>
-
       <body className="h-full">
-        <div className="Dashboard flex h-full bg-dk-light ">
-          <div className="SideBar w-60 p-6 bg-dk flex flex-col justify-between">
+        <div className="Dashboard flex h-full bg-dk-light flex-col md:flex-row">
+          <div className="SideBar w-full md:w-60 p-6 bg-dk flex flex-col justify-between">
             <div className="Top flex-col justify-start items-start gap-9 flex">
               <div className="Logo justify-start items-center gap-3 inline-flex">
                 <div className="Logo px-1.5 py-1.5 shadow-lg bg-purple-300 rounded-md flex-col justify-start items-start gap-2.5 inline-flex">
@@ -87,7 +84,6 @@ export default function RootLayout({
               />
             </div>
           </div>
-
           <div className="MainContent flex-1 flex flex-col">
             <div className="Top p-4 bg-dk flex items-center justify-between">
               <div className="Right flex items-center gap-10"></div>
