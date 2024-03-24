@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Line } from 'react-chartjs-2';
-import 'chart.js/auto';
+import {
+  ResponsiveContainer,
+  AreaChart,
+  XAxis,
+  YAxis,
+  Area,
+  Tooltip,
+  CartesianGrid,
+} from 'recharts';
+import { format, parseISO } from 'date-fns';
 import { formatValue } from '../utils/shortenValues';
 
 const FrequencySelector = ({ onFrequencyChange }) => {
@@ -16,106 +24,125 @@ const FrequencySelector = ({ onFrequencyChange }) => {
   };
 
   return (
-    <div className="mb-4">
-      
-      <label className="mr-2">
-        <input
-          type="radio"
-          value={4}
-          checked={selectedFrequency === 4}
-          onChange={() => handleFrequencyChange(4)}
-        />
+    <div className="mb-4 flex space-x-4">
+      <button
+        className={`text-white font-bold rounded-full py-1 px-3 cursor-pointer ${
+          selectedFrequency === 4
+            ? 'bg-gray-800 text-white'
+            : 'bg-dk-light text-gray-500 hover:text-white'
+        }`}
+        onClick={() => handleFrequencyChange(4)}
+      >
         4 hours
-      </label>
-      <label className="mr-2">
-        <input
-          type="radio"
-          value={8}
-          checked={selectedFrequency === 8}
-          onChange={() => handleFrequencyChange(8)}
-        />
+      </button>
+      <button
+        className={`text-white font-bold rounded-full py-1 px-3 cursor-pointer ${
+          selectedFrequency === 8
+            ? 'bg-gray-800 text-white'
+            : 'bg-dk-light text-gray-500 hover:text-white'
+        }`}
+        onClick={() => handleFrequencyChange(8)}
+      >
         8 hours
-      </label>
-      <label>
-        <input
-          type="radio"
-          value={12}
-          checked={selectedFrequency === 12}
-          onChange={() => handleFrequencyChange(12)}
-        />
+      </button>
+      <button
+        className={`text-white font-bold rounded-full py-1 px-3 cursor-pointer ${
+          selectedFrequency === 12
+            ? 'bg-gray-800 text-white'
+            : 'bg-dk-light text-gray-500 hover:text-white'
+        }`}
+        onClick={() => handleFrequencyChange(12)}
+      >
         12 hours
-      </label>
+      </button>
     </div>
   );
 };
 
 const PriceHistoryChart = ({ priceHistory }) => {
-    const [frequency, setFrequency] = useState(1);
-  
-    const filteredPriceHistory = priceHistory
-      .filter((_, index) => index % frequency === 0)
-      .reverse();
-  
-    const chartData = {
-      labels: filteredPriceHistory.map((entry) => {
-        const date = new Date(entry.recorded_at);
-        const hours = date.getHours();
-        const ampm = hours >= 12 ? 'PM' : 'AM';
-        const formattedHours = hours % 12 || 12;
-        return `${formattedHours} ${ampm}`;
-      }),
-      datasets: [
-        {
-          label: 'Price',
-          data: filteredPriceHistory.map((entry) => entry.price),
-          fill: false,
-          borderColor: 'rgb(75, 192, 192)',
-          tension: 0.1,
-          pointRadius: 6,
-          pointHoverRadius: 8,
-          pointBackgroundColor: 'rgb(75, 192, 192)',
-          pointBorderColor: 'white',
-          pointHoverBackgroundColor: 'white',
-          pointHoverBorderColor: 'rgb(75, 192, 192)',
-        },
-      ],
-    };
+  const [frequency, setFrequency] = useState(1);
 
-  const options = {
-    plugins: {
-      tooltip: {
-        callbacks: {
-          label: (context) => {
-            const value = context.parsed.y;
-            return `Price: ${formatValue(value)}`;
-          },
-        },
-      },
-    },
-    scales: {
-      y: {
-        ticks: {
-          callback: (value) => formatValue(value),
-        },
-      },
-    },
-  };
+  const filteredPriceHistory = priceHistory
+    .filter((_, index) => index % frequency === 0)
+    .reverse();
+
+  const data = filteredPriceHistory.map((entry) => ({
+    date: entry.recorded_at,
+    price: entry.price,
+  }));
 
   const handleFrequencyChange = (newFrequency) => {
     setFrequency(newFrequency);
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
-      <div className="bg-white text-black rounded-lg shadow-md p-6">
+    <div className="w-full">
+      <div className="bg-bright text-white rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-bold mb-4">Price History Chart</h2>
         <FrequencySelector onFrequencyChange={handleFrequencyChange} />
         <div className="w-full h-96">
-          <Line data={chartData} options={options} />
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart data={data}>
+              <defs>
+                <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#344955" stopOpacity={0.4} />
+                  <stop offset="75%" stopColor="#344955" stopOpacity={0.05} />
+                </linearGradient>
+              </defs>
+              <Area dataKey="price" stroke="#ffffff" fill="url(#color)" />
+              <XAxis
+                dataKey="date"
+                axisLine={false}
+                tickLine={false}
+                tick={{ fill: 'rgba(255, 255, 255, 0.7)' }}
+                tickFormatter={(str, index) => {
+                  const date = parseISO(str);
+                  return format(date, 'MMM d');
+                }}
+                interval={24 / frequency - 1}
+                tickMargin={10}
+              />
+              <YAxis
+                dataKey="price"
+                axisLine={false}
+                tickLine={false}
+                tickCount={6}
+                tick={{ fill: 'rgba(255, 255, 255, 0.7)' }}
+                tickFormatter={(number, index) => {
+                  if (index === 0) {
+                    return '';
+                  }
+                  return formatValue(number);
+                }}
+              />
+              <Tooltip content={<CustomTooltip />} />
+              <CartesianGrid
+                opacity={0.15}
+                vertical={false}
+                strokeDasharray="3 3"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
         </div>
       </div>
     </div>
   );
+};
+
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    const date = parseISO(label);
+    const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+    return (
+      <div className="bg-white text-bright p-4 rounded shadow-md">
+        <h4 className="text-lg font-semibold mb-2">
+          {format(localDate, 'eeee, MMM d, h:mm a')}
+        </h4>
+        <p className="text-base">{formatValue(payload[0].value)}</p>
+      </div>
+    );
+  }
+  return null;
 };
 
 export default PriceHistoryChart;

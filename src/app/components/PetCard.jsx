@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { use } from 'react';
 import { formatValue } from '../utils/shortenValues';
 import { formatName } from '../utils/petNames';
 import { getPicture } from '../utils/petPicture';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { FaStar } from 'react-icons/fa'; // Import the star icon from react-icons
+
 
 function useDynamicFontSize(text) {
   const [fontSize, setFontSize] = useState('1rem');
@@ -36,13 +38,11 @@ const PetCard = ({ pet }) => {
   const ids = formatName(id, pt, sh);
   const pictureUrl = getPicture(id);
   const dynamicFontSize = useDynamicFontSize(ids);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   let borderStyle = {};
   if (pt === 1) {
-    borderStyle = {
-      border: '4px solid',
-      borderColor: '#f59e0b',
-    };
+    borderStyle = { border: '4px solid', borderColor: '#f59e0b' };
   } else if (pt === 2) {
     borderStyle = {
       border: '4px solid',
@@ -52,17 +52,44 @@ const PetCard = ({ pet }) => {
 
   let shinyClass = '';
   if (sh) {
-    shinyClass = 'relative overflow-hidden before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent before:animate-shiny';
+    shinyClass =
+      'relative overflow-hidden before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent before:animate-shiny';
   }
+
+  useEffect(() => {
+    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    setIsFavorite(storedFavorites.includes(ids));
+  }, [ids]);
+
+  const handleFavoriteClick = (e) => {
+    e.preventDefault();
+    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const updatedFavorites = isFavorite
+      ? storedFavorites.filter((favoriteId) => favoriteId !== ids)
+      : [...storedFavorites, ids];
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    setIsFavorite(!isFavorite);
+  };
 
   return (
     <Link href={{ pathname: '/price-terminal', query: { id, pt, sh } }} passHref>
       <div
-        className={`bg-bright rounded-lg shadow-md flex flex-col items-center h-full ${shinyClass}`}
+        className={`bg-bright rounded-lg shadow-md flex flex-col items-center h-full relative ${shinyClass}`}
         style={borderStyle}
       >
         <div className={`relative w-50 ${pt === 0 ? 'h-40' : 'h-40'}`}>
-          <img src={pictureUrl} alt={ids} className="w-full h-full pt-5 object-cover rounded-t-lg" />
+          <img
+            src={pictureUrl}
+            alt={ids}
+            className="w-full h-full pt-5 object-cover rounded-t-lg"
+          />
+        </div>
+        <div className="absolute top-2 right-2">
+          <FaStar
+            color={isFavorite ? 'gold' : 'gray'}
+            size={24}
+            onClick={handleFavoriteClick}
+          />
         </div>
         <div className="flex-grow p-4 text-center">
           <h3
@@ -71,7 +98,9 @@ const PetCard = ({ pet }) => {
           >
             {ids}
           </h3>
-          <p className="text-lg text-gray-300 font-bold mt-2">Value: {formatValue(value)}</p>
+          <p className="text-lg text-gray-300 font-bold mt-2">
+            Value: {formatValue(value)}
+          </p>
           <p className="text-gray-300">Category: {category}</p>
         </div>
       </div>

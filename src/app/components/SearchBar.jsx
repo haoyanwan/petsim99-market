@@ -75,6 +75,16 @@ const SearchBar = ({ searchTerm, onSearch, onFilterChange }) => {
         >
           Shiny
         </button>
+
+        <button
+          className={`ml-2 text-gray-400 font-bold rounded-full py-1 px-3 cursor-pointer ${
+            activeFilters.includes('Favorite') ? 'bg-gray-800 text-white' : 'bg-dk-light text-gray-500 hover:text-white'
+          }`}
+          onClick={() => handleFilterChange('Favorite')}
+        >
+          Favorite
+        </button>
+        
       </div>
     </div>
   );
