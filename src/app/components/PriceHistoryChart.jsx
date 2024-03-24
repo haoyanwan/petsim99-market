@@ -80,7 +80,7 @@ const maxPrice = Math.max(...data.map((entry) => entry.price));
 const minPrice = Math.min(...data.map((entry) => entry.price));
 
 // Get the current price (latest price)
-const currentPrice = priceHistory[priceHistory.length - 1]?.price;
+const currentPrice = priceHistory[0]?.price;
 
   return (
     <div className="w-full">
