@@ -64,7 +64,8 @@ const PriceHistoryChart = ({ priceHistory }) => {
 
   const filteredPriceHistory = priceHistory
     .filter((_, index) => index % frequency === 0)
-    .reverse();
+    .reverse()
+    .slice(-24);
 
   const data = filteredPriceHistory.map((entry) => ({
     date: entry.recorded_at,
@@ -125,7 +126,7 @@ const currentPrice = priceHistory[priceHistory.length - 1]?.price;
                   }
                   return formatValue(number);
                 }}
-                domain={[minPrice * 0.9, maxPrice * 1.1]}
+                domain={[minPrice * 0.95, maxPrice * 1.05]}
               />
               <Tooltip content={<CustomTooltip />} />
               <CartesianGrid

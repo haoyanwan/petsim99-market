@@ -88,7 +88,7 @@ export default function RootLayout({
             <div className="Top p-4 bg-dk flex items-center justify-between">
               <div className="Right flex items-center gap-10"></div>
             </div>
-            <div className="Main flex-1 px-0 py-0 overflow-auto">
+            <div className="Main flex-1 px-0 py-0 overflow-auto bg-dk-light">
               {children}
             </div>
           </div>
