@@ -145,17 +145,22 @@ const currentPrice = priceHistory[0]?.price;
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     const date = parseISO(label);
-    const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+    const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const localDate = new Date(date.toLocaleString('en-US', { timeZone: userTimezone }));
+
+    //adjust offset
+    const fixedDate = new Date(localDate.getTime() - 6 * 60 * 60 * 1000);
+
     return (
       <div className="bg-white text-bright p-4 rounded shadow-md">
         <h4 className="text-lg font-semibold mb-2">
-          {format(localDate, 'eeee, MMM d, h:mm a')}
+          {format(fixedDate, 'eeee, MMM d, h:mm a')}
         </h4>
-        <p className="text-base">{formatValue(payload[0].value)}</p>
+        <p className="text-base mb-2">{formatValue(payload[0].value)}</p>
+     
       </div>
     );
   }
   return null;
 };
-
 export default PriceHistoryChart;
