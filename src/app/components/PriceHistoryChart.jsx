@@ -149,7 +149,7 @@ const CustomTooltip = ({ active, payload, label }) => {
     const localDate = new Date(date.toLocaleString('en-US', { timeZone: userTimezone }));
 
     //adjust offset
-    const fixedDate = new Date(localDate.getTime() - 6 * 60 * 60 * 1000);
+    const fixedDate = new Date(localDate.getTime() - 0 * 60 * 60 * 1000);
 
     return (
       <div className="bg-white text-bright p-4 rounded shadow-md">
