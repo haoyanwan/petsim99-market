@@ -74,12 +74,22 @@ const PriceHistoryChart = ({ priceHistory }) => {
   const handleFrequencyChange = (newFrequency) => {
     setFrequency(newFrequency);
   };
+// Calculate the minimum and maximum prices from the data
+const maxPrice = Math.max(...data.map((entry) => entry.price));
+
+// Get the current price (latest price)
+const currentPrice = priceHistory[priceHistory.length - 1]?.price;
 
   return (
     <div className="w-full">
       <div className="bg-bright text-white rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-bold mb-4">Price History Chart</h2>
-        <FrequencySelector onFrequencyChange={handleFrequencyChange} />
+        {currentPrice && (
+          <h3 className="text-lg font-semibold mb-4">
+            Current Price: {formatValue(currentPrice)}
+          </h3>
+        )}        
+      <FrequencySelector onFrequencyChange={handleFrequencyChange} />
         <div className="w-full h-96">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={data}>
@@ -106,7 +116,7 @@ const PriceHistoryChart = ({ priceHistory }) => {
                 dataKey="price"
                 axisLine={false}
                 tickLine={false}
-                tickCount={6}
+                tickCount={7}
                 tick={{ fill: 'rgba(255, 255, 255, 0.7)' }}
                 tickFormatter={(number, index) => {
                   if (index === 0) {
@@ -114,6 +124,7 @@ const PriceHistoryChart = ({ priceHistory }) => {
                   }
                   return formatValue(number);
                 }}
+                domain={[0, maxPrice * 1.1]}
               />
               <Tooltip content={<CustomTooltip />} />
               <CartesianGrid
