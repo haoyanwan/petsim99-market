@@ -76,6 +76,7 @@ const PriceHistoryChart = ({ priceHistory }) => {
   };
 // Calculate the minimum and maximum prices from the data
 const maxPrice = Math.max(...data.map((entry) => entry.price));
+const minPrice = Math.min(...data.map((entry) => entry.price));
 
 // Get the current price (latest price)
 const currentPrice = priceHistory[priceHistory.length - 1]?.price;
@@ -124,7 +125,7 @@ const currentPrice = priceHistory[priceHistory.length - 1]?.price;
                   }
                   return formatValue(number);
                 }}
-                domain={[0, maxPrice * 1.1]}
+                domain={[minPrice * 0.9, maxPrice * 1.1]}
               />
               <Tooltip content={<CustomTooltip />} />
               <CartesianGrid
