@@ -22,6 +22,20 @@ export default function RootLayout({
     <html lang="en" className="h-full">
       <head>
         <link rel="shortcut icon" href="/favicon.ico" sizes="any" />
+        {/* Google tag (gtag.js) */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-388650561"
+        ></script>
+        <script>
+          {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'AW-388650561');
+            `}
+        </script>
       </head>
       <body className="h-full">
         <div className="Dashboard flex h-full bg-dk-light flex-col md:flex-row">
