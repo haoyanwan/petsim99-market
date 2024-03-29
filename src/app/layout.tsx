@@ -11,8 +11,8 @@ import logoIcon from "../../public/images/logo.png";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Pet Simulator 99 (PS99) Market Price Tracker",
-  description: "Made for tracking historic prices in pet simulator 99(ps99)",
+  title: "Pet Simulator 99 (PS99) Value List",
+  description: "Made for tracking historic prices in pet simulator 99",
 };
 
 export default function RootLayout({

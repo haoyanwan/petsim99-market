@@ -4,9 +4,9 @@ import { formatName } from '../utils/petNames';
 import { getPicture } from '../utils/petPicture';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { FaStar } from 'react-icons/fa'; // Import the star icon from react-icons
+import { FaStar } from 'react-icons/fa';
 
-
+// Import the star icon from react-icons
 function useDynamicFontSize(text) {
   const [fontSize, setFontSize] = useState('1rem');
 
@@ -36,7 +36,13 @@ const PetCard = ({ pet }) => {
   }
 
   const ids = formatName(id, pt, sh);
-  const pictureUrl = getPicture(id);
+  let pictureUrl = getPicture(id);
+
+  // If pictureUrl is empty or undefined, replace it with the default image path
+  if (!pictureUrl) {
+    pictureUrl = '/Noimagefound.png';
+  }
+
   const dynamicFontSize = useDynamicFontSize(ids);
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -85,11 +91,7 @@ const PetCard = ({ pet }) => {
           />
         </div>
         <div className="absolute top-2 right-2">
-          <FaStar
-            color={isFavorite ? 'gold' : 'gray'}
-            size={24}
-            onClick={handleFavoriteClick}
-          />
+          <FaStar color={isFavorite ? 'gold' : 'gray'} size={24} onClick={handleFavoriteClick} />
         </div>
         <div className="flex-grow p-4 text-center">
           <h3
@@ -98,9 +100,7 @@ const PetCard = ({ pet }) => {
           >
             {ids}
           </h3>
-          <p className="text-lg text-gray-300 font-bold mt-2">
-            Value: {formatValue(value)}
-          </p>
+          <p className="text-lg text-gray-300 font-bold mt-2">Value: {formatValue(value)}</p>
           <p className="text-gray-300">Category: {category}</p>
         </div>
       </div>
